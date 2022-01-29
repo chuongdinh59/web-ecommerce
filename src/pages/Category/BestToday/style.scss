@@ -1,0 +1,19 @@
+@import '../../../assets/css/style.scss';
+
+
+.best-seller{
+    padding-bottom: 64px  ;
+    &__heading{
+        margin-bottom: 38px;
+        display: flex;
+        align-items: center;
+        svg{
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;  
+        }
+    }
+    &__list{
+        gap: 20px;
+    }
+}

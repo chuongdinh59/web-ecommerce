@@ -1,0 +1,81 @@
+@keyframes border {
+    0% {
+        border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
+    }
+    50% {
+        border-radius: 31% 69% 59% 41% / 28% 24% 76% 72%;
+    }
+    100% {
+        border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
+    }
+}
+
+
+
+
+
+.link_wrapper{
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.link_wrapper > a{
+  display: block;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #333;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all .35s;
+  position: relative;
+  &::after{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top:-25px;
+      right: -30px;
+      content: "";
+      background-color: transparent;
+  }
+}
+
+.icon{
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  position: absolute;
+  transform: rotate(45deg);
+  right: 0;
+  top: 0;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.icon svg{
+  width: 30px;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  transform: rotate(-45deg);
+  fill: #2ecc71;
+  transition: all .35s;
+}
+
+a.discovery:hover{
+  width: 200px;
+  border: 3px solid #2ecc71;
+  background: transparent;
+  color: #2ecc71;
+}
+
+a:hover + .icon{
+  border: 3px solid #2ecc71;
+  right: -25%;
+}

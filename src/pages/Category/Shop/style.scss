@@ -1,0 +1,178 @@
+@import '../../../assets/css/style.scss';
+
+
+.shop{
+    &-container{
+        padding: 50px 15px !important;
+        display: grid;
+        grid-template-columns: 2fr 8fr;
+        gap: 0 15px;
+        @include mobile{
+            padding: 20px 10px !important;
+        }
+    }
+    &-side{
+        @include mobile{
+            display: none;           
+        }
+        h3.title{
+            font-size: 20px;
+            @include tablet{
+                font-size: 16px;
+            }
+        }
+        &__category{
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+            padding: 30px 0;
+        }
+    }
+   
+    &-side{
+        &__second{
+            display: none;
+            @include mobile{
+                display: block;
+            }
+            &__category{
+                ul{
+                    display: flex;
+                    align-items: center;
+                    gap: 0 10px;
+                    font-weight: 600;
+                    font-size: 12px;
+                }
+            }
+            .option__filter{
+                position: relative;
+                width: 100%;
+                select{
+                    width: 100%;
+                    margin-left: auto;
+                    background-color: transparent;
+                    border: 1px solid $green1;
+                    padding: 10px;
+                    font-size: 14px;
+                    border-radius: $radius-10;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;       /* Remove default arrow */
+                    &:focus{
+                        outline: $green1;
+                    }
+                }
+                span{
+                    right: 10px;
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(0,-50%);
+                }
+            }
+        }
+    }
+    .filter-price{
+        padding: 20px 0;
+        width: 95%;
+        &__control{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            button{
+                margin-top: 10px;
+                border: 1px solid $grayBlur1;
+                padding: 10px 20px;
+                cursor: pointer;
+                background-image: linear-gradient(to left, $blue 0%, $blue  51%, #77A1D3  100%);
+                color: #fff;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: $radius-10;
+            }
+        }
+    }
+    .filter-input{
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+        .help input{
+            padding: 5px 10px;
+        }
+    }
+    .view{
+        display: flex;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        &-main, .sort{
+            display: flex;
+            align-items: center;
+            gap: 0 30px
+        }
+        @include mobile{
+            flex-direction: unset;
+            .sort{
+                display: none
+            }
+        }
+        &-item{
+            @include mid(true);
+            gap: 0 10px;
+            cursor: pointer;
+        }
+        
+    }
+}
+.product-list{
+    padding: 0;
+    
+    &__heading{
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include mobile{
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        padding-top: 60px !important;
+        padding-bottom: 40px;
+        &__text{
+             display: flex;
+            align-items: center;
+             svg{
+                width: 30px;
+                height: 30px;
+                
+            }
+        }
+         .help{
+            margin-bottom: 0;
+            width: 40%;
+            @include mobile{
+                width: 100%;
+                margin-top:  30px;
+            }
+            input{
+                width: 100%;
+            }
+    }
+        
+    }
+    &__main{
+        gap: 20px;
+        @include tablet{
+            gap: 10px
+        }
+    }
+    @include mobile{
+        .paginate{
+        justify-content: center;
+    }
+    }
+   
+}

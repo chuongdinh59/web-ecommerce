@@ -1,0 +1,26 @@
+.filter{
+    display: flex;
+    align-items: center;
+    gap: 0 15px;
+    position: relative;
+    &-field{
+        font-size: 16px;
+    }
+    svg{
+        width: 13px;
+        height: 13px;
+    }
+    input[type = checkbox]{
+        width: 20px;
+        height: 20px;
+        border: 1px solid #fff;
+    }
+
+    input{
+        margin: 0;
+    }
+    .stars{
+        display: flex;
+        align-items: center;
+    }
+}

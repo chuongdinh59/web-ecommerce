@@ -1,0 +1,61 @@
+@import '../../assets/css/style.scss';
+
+.policy{
+    padding-bottom: 32px !important;
+    border-bottom: 1px solid $gray;
+    @include mobile2{
+        margin-top: 100px !important;
+    }
+    @include mobile{
+        &-list{
+            padding: 50px 0;
+            max-width: 90%;
+            margin: 0 auto;
+            gap: 20px 0;
+        }
+    }
+    &-item{
+         @include mobile{
+             width: 75%;
+            margin: 0 auto;
+        }
+        display: flex;
+        align-items: center;
+        gap: 0 18px;
+        &__content{
+            @include flex(flex-start, space-between);
+            flex-direction: column;
+            &__title{
+                font-size: 16px;
+                font-weight: 600;
+                 @include mobile{
+                    font-size: 20px;
+                }
+                 @include tablet{
+                    font-size: 13px;
+                }
+            }
+           
+            &__desc{
+                color: #9a9a9a;
+                @include mobile{
+                    font-size: 15px;
+                }
+                @include tablet{
+                    font-size: 12px;
+                }
+            }
+        }
+         &__icon--red{
+                svg{
+                    @include mobile{
+                        width: 50px;
+                        height: 50px;
+                    }
+                    path{
+                        fill: $tagColor;
+                    }
+                }
+            }
+    }
+}

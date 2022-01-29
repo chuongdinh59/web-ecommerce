@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap');
+
+html {
+    font-size: 13px;
+
+    @include mobile {
+        font-size: 11px;
+    }
+}
+body{
+    color: $txt-main-color;
+    font-family: 'Roboto', sans-serif;
+    // font-family: 'Poppins', sans-serif;
+    width: 100%;
+    background-color: $main-bg;
+}
+.container {
+    width: 100%;
+    max-width: 1250px;
+    padding: 0 15px;
+    margin: auto;
+    @include tablet {
+        padding: 0 15px;
+    }
+
+    @include mobile {
+        padding: 0 10px;
+    }
+}
+
+@each $color, $val in $colors {
+    .color-#{$color} {
+        color: $val;
+    }
+
+    .bg-#{$color} {
+        background-color: $val;
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-#{$val} {
+        grid-template-columns: repeat($val, 1fr);
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-md-#{$val} {
+        @include tablet {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-sm-#{$val} {
+        @include mobile {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
+}
+.grid {
+    display: grid;
+}
+.heading{
+    font-size: 35px;
+    font-weight: 700;
+    @include tablet{
+        font-size: 25px;
+    }
+    @include mobile{
+        font-size: 20px;
+    }
+}
+.text{
+    font-family: 'Poppins', sans-serif;
+    color: $blur;
+}
+.title{
+    font-size: 16px;
+    font-weight: 600;
+    @include tablet{
+        font-size: 14px;
+    }
+    @include mobile{
+        font-size: 12px;
+    }
+}
+.price--sell{
+    color: $blur;
+    font-size: 15px;
+    text-decoration: line-through;
+    @include tablet{
+        font-size: 12px;
+    }
+    @include mobile{
+        font-size: 10px;
+    }
+}
+.price--real{
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    @include tablet{
+        font-size: 15px;
+    }
+    @include mobile{
+        font-size: 13px;
+    }
+}
+
+.App{
+    // width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
+}

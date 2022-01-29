@@ -1,0 +1,34 @@
+@import "../../assets/css/style.scss";
+
+
+.help{
+    position: relative;
+    margin-bottom: 18px;
+    input{
+        padding: 12px 40px;
+        outline: none;
+        border: 2px solid #fff;
+        font-size: 16px;
+        background-color: $grayBlur1;
+        border-radius: $radius-10;
+        width: 100%;
+
+    }
+    input:focus{
+        border: 2px solid $green1;
+    }
+   
+    
+    &-icon{
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        svg{
+            path{
+                    fill: $grayBlur2;
+            }
+        }
+    }
+   
+}

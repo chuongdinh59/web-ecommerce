@@ -1,0 +1,171 @@
+@import '../../assets/css/style.scss';
+
+
+.product-list{
+    padding: 80px 0;
+    gap: 40px;
+    &__heading{
+        text-align: center;
+    }
+    &__field{
+        padding-top: 20px;
+        padding-bottom: 60px;
+        max-width: 25%;
+        @include flex(center, space-between);
+        margin-left: auto;
+        margin-right: auto;
+       
+        @include tablet{
+            max-width: 50%;
+        }
+         @include mobile{
+            max-width: 100%;
+        }
+        &__tab{
+            padding-bottom: 10px;
+            &.active{
+                color: $tagColor;
+                border-bottom: 3px solid ;
+            }   
+        }
+    }
+    &__card{
+        gap: 40px;
+    }
+    .discovery-more{
+        margin-top: 50px;
+        text-align: center;
+        position: relative;
+        max-width: 120px;
+        margin: 50px auto;
+        border-bottom: 1px solid;
+    }
+}
+
+
+
+.product{
+    display: flex;
+    flex-direction: column;
+    border-radius: $radius-10;
+    -webkit-border-radius: $radius-10;
+    -moz-border-radius: $radius-10;
+    -ms-border-radius: $radius-10;
+    -o-border-radius: $radius-10;
+    overflow: hidden;
+    border: 1px solid $gray;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
+    &-img{
+        height: 200px;
+        @include tablet{
+            height: 150px;
+        }
+        flex-shrink: 0;
+        position: relative;
+        &:hover &__control span{
+            @include transform(translateY(0px));
+            opacity: 1;
+        }
+        &__control{
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            @include transform(translateX(-50%));
+            display: flex;
+            align-items: center;
+            gap: 0 18px;
+            &__btn{
+                position: relative;
+                width: 50px;
+                height: 50px;
+                @include tablet{
+                    width: 30px;
+                    height: 30px;
+                }
+                background-color: #fff;
+                border-radius: $radius;
+                -webkit-border-radius: $radius;
+                -moz-border-radius: $radius;
+                -ms-border-radius: $radius;
+                -o-border-radius: $radius;
+                opacity: 0;
+                svg{
+                    z-index: 100;
+                }
+                @include mid(true);
+                @include transform(translateY(30px));
+                @include transition(0.2s);
+                
+                &:hover .overplay{
+                    display: block;
+                }
+                .overplay{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-color: $tagColor;
+                    border-radius: $radius;
+                    -webkit-border-radius: $radius;
+                    -moz-border-radius: $radius;
+                    -ms-border-radius: $radius;
+                    -o-border-radius: $radius;
+                    display: none;
+                }
+               
+            }
+            span:first-child{
+                @include transition-delay(0.2s);
+            }
+            span:nth-child(2){
+                @include transition-delay(0.3s);
+            }
+            span:nth-child(3){
+                @include transition-delay(0.4s);
+            }
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    &-desc{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px 0; 
+        padding: 25px;
+        @include tablet{
+            padding: 10px;
+            gap: 5px 0;
+        }
+        &__name{
+            word-break: all;
+            display:-webkit-box;
+            -webkit-line-clamp:1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+        }
+        .number{
+            @include flex(center, unset);
+            gap: 0 10px;
+        }
+        &__price{
+            margin-top: auto;
+        }
+        .stars{
+            svg{
+            @include tablet{
+                    width: 15px;
+                    height: 15px;
+                }
+        }
+        }
+    }
+
+}
