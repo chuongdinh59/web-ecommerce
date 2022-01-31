@@ -1,5 +1,5 @@
+import CartHeader from "components/CartHeader";
 import { Search } from "components/Icon";
-import { Buy } from "components/Icon";
 import React, { useRef } from "react";
 import "./style.scss";
 function Header(props) {
@@ -31,8 +31,7 @@ function Header(props) {
             </div>
           </div>
           <div className="header-main__cart">
-            <Buy />
-            <span className="header-main__cart__number">1</span>
+            <CartHeader />
           </div>
 
           {/* <div className="header-mobile__menu">
@@ -81,8 +80,7 @@ function Header(props) {
               </button>
             </div>
             <div className="header-main__cart">
-              <Buy />
-              <span className="header-main__cart__number">1</span>
+              <CartHeader />
             </div>
           </div>
         </div>

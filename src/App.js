@@ -1,10 +1,9 @@
-import CheckOut from "pages/Checkout";
+import ProductDetail from "components/ProductDetail";
 
 function App() {
   return (
     <div className="App">
-      <CheckOut />
-      {/* <Category /> */}  
+      <ProductDetail />
     </div>
   );
 }

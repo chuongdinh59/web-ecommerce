@@ -1,0 +1,35 @@
+@import '../../assets/css/style.scss';
+
+.tag{
+    text-align: center;
+    border-radius: $radius-5;
+    &-size{
+        &__large{
+            
+        }
+        &__medium{
+            padding: 0 8px;
+        }
+        &__small{
+
+        }
+    }
+    &-bg{
+        &__default{
+            background:transparent;
+        }
+        &__bright{
+            background-color: $green1;
+        }
+        &__red{
+           background-color: rgb(255, 240, 241);
+        }
+    }
+    &-color{
+        &__red{
+            color: $red;
+            font-size: 14px;
+        }
+    }
+    border: 1px solid;
+}

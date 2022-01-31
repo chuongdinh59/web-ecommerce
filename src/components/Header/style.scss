@@ -207,27 +207,7 @@
                 -o-border-radius: $radius;
             }
         }
-        &__cart{
-            position: relative;
-            svg{
-                height: 40px;
-                width: 40px;
-            }
-            &__number{
-                text-align: center;
-                position: absolute;
-                top: -5px;
-                right: -5px;
-                background-color: $orange;
-                width: 20px;
-                height: 20px;
-                border-radius: $radius;
-                -webkit-border-radius: $radius;
-                -moz-border-radius: $radius;
-                -ms-border-radius: $radius;
-                -o-border-radius: $radius;
-}
-        }
+       
     }
     
      

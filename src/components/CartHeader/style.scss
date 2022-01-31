@@ -1,0 +1,22 @@
+.cart-header{
+    display: flex;
+    align-items: center;
+    position: relative;
+    &__icon{
+        svg{
+            width: 40px;
+            height: 40px;
+        }
+    }
+    &__number{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #fbb96b;
+        text-align: center;
+        top: -5px;
+        right: -5px;
+    }
+    
+}
