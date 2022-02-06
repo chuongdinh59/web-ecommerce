@@ -3,11 +3,14 @@
 .review-carousel{
     padding: 64px 0;
     text-align: center;
+    overflow: hidden;
     &__heading{
         margin-bottom: 60px;
     }
     &__content{
         gap: 0 32px;
+        position: relative;
+
     }
 }
 
@@ -17,6 +20,8 @@
     text-align: left;
     display: flex;
     flex-direction: column;
+    margin-right: 20px;
+    border-radius: $radius-10;
     &-info{
         display: flex;
         align-items: center;
@@ -46,4 +51,42 @@
     &-author{
         margin-top: 20px;
     }
+}
+
+.flickity-enabled{
+    width: 100%;
+    outline: none   ;
+}
+.flickity-page-dots{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.dot{
+    width: 10px;
+    height: 10px;
+    background-color: $gray;
+    border-radius: 50%;
+}
+.dot.is-selected{
+    background-color: #000;
+}
+.flickity-button{
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.flickity-button.next{
+    right: 2%;
+}
+.flickity-button.previous{
+    left: 2%;
 }

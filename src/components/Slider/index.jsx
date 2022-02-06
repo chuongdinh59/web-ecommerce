@@ -1,18 +1,66 @@
 import Button from "components/Button";
+import { API } from "constant";
 import React from "react";
+import Flickity from "react-flickity-component";
 import "./style.scss";
 function Slider(props) {
+  const flickityOptions = {
+    initialIndex: 0,
+    cellAlign: "left",
+    groupCells: 1,
+    prevNextButtons: false,
+    autoPlay: true,
+  };
+
+  const sliders = [
+    {
+      img: "./img/iphone.png",
+      content: "IPHONE 13 Pro Max",
+      bgShape: "blue",
+      link: `shop?categories=1789`,
+    },
+    {
+      img: "./img/camera2.png",
+      content: "CAMERA SONY S5",
+      bgShape: "pink",
+      link: "shop?categories=1801",
+    },
+    {
+      img: "./img/laptop2.png",
+      content: "LAPTOP ASUS GAMING",
+      bgShape: "orange",
+      link: "shop?categories=1846",
+    },
+  ];
   return (
     <section className="slider container">
-      <SliderItem />
+      <div className="slider-center">
+        <Flickity options={flickityOptions}>
+          {sliders?.map((slider) => {
+            return (
+              <SliderItem
+                src={slider.img}
+                content={slider.content}
+                color={slider.bgShape}
+                link={slider.link}
+              />
+            );
+          })}
+        </Flickity>
+      </div>
     </section>
   );
 }
-function SliderItem(props) {
+function SliderItem({
+  src = "./img/iphone.png",
+  content = "IPHONE 13 Pro Max",
+  color,
+  link,
+}) {
   return (
     <div className="slider-item">
       <div className="slider-item__content">
-        <h3 className="slider-item__content__title ">IPHONE 13 Pro Max</h3>
+        <h3 className="slider-item__content__title ">{content}</h3>
         <p className="slider-item__content__slogan">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores cum
           ea aperiam optio placeat aspernatur consequatur totam sit, iam optio
@@ -32,13 +80,13 @@ function SliderItem(props) {
           </div>
         </button> */}
         <div className="slider-item__btn">
-          <Button />
+          <Button link={link} />
         </div>
       </div>
       <div className="slider-item__img">
-        <img src="./img/iphone.png" alt="" />
+        <img src={src} alt="" />
       </div>
-      <div className="slider-item__shape bg-blue"></div>
+      <div className={`slider-item__shape bg-${color}`}></div>
     </div>
   );
 }

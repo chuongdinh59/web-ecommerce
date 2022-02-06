@@ -311,15 +311,19 @@ export const Section = () => {
 };
 
 export const Loader = () => {
-  <div className="loadingio-spinner-ellipsis-dz3y3et8uj">
-    <div className="ldio-vzmnqdjuqs">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  return (
+    <div className="loader-wrapper">
+      <div className="loadingio-spinner-ellipsis-dz3y3et8uj">
+        <div className="ldio-vzmnqdjuqs">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export const Truck = () => {

@@ -3,7 +3,6 @@
 
 .help{
     position: relative;
-    margin-bottom: 18px;
     input{
         padding: 12px 40px;
         outline: none;
@@ -17,8 +16,6 @@
     input:focus{
         border: 2px solid $green1;
     }
-   
-    
     &-icon{
         position: absolute;
         left: 15px;
@@ -30,5 +27,15 @@
             }
         }
     }
-   
+    
+}
+.error-text{
+    display: block;
+    height: 30px;
+    color: $red;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding:0 10px;
+
 }

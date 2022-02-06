@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     gap: 0 10px;
-    justify-content: flex-end;
+    justify-content: center;
     &-btn{
         border: none;
         display: flex;
@@ -22,7 +22,9 @@
         cursor: pointer;   
     }
     li.active{
-        color: #ff6f61;
-        font-weight: 600;
+        a{
+            color: #ff6f61;
+            font-weight: 600;
+        }
     }
 }

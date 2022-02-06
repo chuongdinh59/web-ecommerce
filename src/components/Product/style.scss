@@ -10,11 +10,11 @@
     &__field{
         padding-top: 20px;
         padding-bottom: 60px;
-        max-width: 25%;
+        max-width: 30%;
         @include flex(center, space-between);
         margin-left: auto;
         margin-right: auto;
-       
+        cursor: pointer;
         @include tablet{
             max-width: 50%;
         }
@@ -23,6 +23,7 @@
         }
         &__tab{
             padding-bottom: 10px;
+            border: none;
             &.active{
                 color: $tagColor;
                 border-bottom: 3px solid ;
@@ -31,6 +32,7 @@
     }
     &__card{
         gap: 40px;
+        position: relative;
     }
     .discovery-more{
         margin-top: 50px;
@@ -39,6 +41,64 @@
         max-width: 120px;
         margin: 50px auto;
         border-bottom: 1px solid;
+    }
+    &__detail{
+        // left: 8%;
+        // right: 8%;
+        // top: 10%;
+        // bottom: 10%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.6);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        &__wraper{
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            align-items: center;
+            gap: 0 20px;
+            width: 90%;
+            height: 80%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: $radius-10;
+               .time-btn{
+                    position: absolute;
+                    top: 5%;
+                    right: 5%;
+                    cursor: pointer;
+                }
+        }
+        &__img{
+            width: 60% ;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                border-radius: 10px;
+            }
+        }
+        &__info{
+            display: flex;
+            flex-direction: column;
+            gap: 10px 0;
+            flex: 1;
+            &__btn{
+                gap: 0 10px;
+                flex:1;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-start;
+            }
+        }
     }
 }
 
@@ -56,6 +116,7 @@
     border: 1px solid $gray;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     cursor: pointer;
+    max-height: 340px;
     &-img{
         height: 200px;
         @include tablet{
@@ -83,7 +144,7 @@
                     width: 30px;
                     height: 30px;
                 }
-                background-color: #fff;
+                background-color: $grayBlur1;
                 border-radius: $radius;
                 -webkit-border-radius: $radius;
                 -moz-border-radius: $radius;
@@ -129,7 +190,7 @@
         img{
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
     }
     &-desc{
@@ -167,5 +228,61 @@
         }
         }
     }
-
+ 
+    // .product-list__detail{
+    //     // left: 8%;
+    //     // right: 8%;
+    //     // top: 10%;
+    //     // bottom: 10%;
+    //     position: fixed;
+    //     top: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     left: 0;
+    //     z-index: 1;
+    //     background-color: rgba(0, 0, 0, 0.6);
+    //     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    //     &__wraper{
+    //         position: relative;
+    //         top: 50%;
+    //         left: 50%;
+    //         transform: translate(-50%,-50%);
+    //         display: flex;
+    //         align-items: center;
+    //         gap: 0 20px;
+    //         width: 90%;
+    //         height: 80%;
+    //         background-color: #fff;
+    //         padding: 30px;
+    //         border-radius: $radius-10;
+    //            .time-btn{
+    //                 position: absolute;
+    //                 top: 5%;
+    //                 right: 5%;
+    //                 cursor: pointer;
+    //             }
+    //     }
+    //     &__img{
+    //         width: 60% ;
+    //         display: flex;
+    //         align-items: center;
+    //         justify-content: center;
+    //         img{
+    //             border-radius: 10px;
+    //         }
+    //     }
+    //     &__info{
+    //         display: flex;
+    //         flex-direction: column;
+    //         gap: 10px 0;
+    //         flex: 1;
+    //         &__btn{
+    //             gap: 0 10px;
+    //             flex:1;
+    //             display: flex;
+    //             align-items: flex-end;
+    //             justify-content: flex-start;
+    //         }
+    //     }
+    // }
 }

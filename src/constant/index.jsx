@@ -1,0 +1,15 @@
+export const API = "http://cfd-reactjs.herokuapp.com";
+export const FETCH_LOGIN = "FETCH_LOGIN";
+export const LOGIN = "LOGIN";
+export const FETCH_USER = "FETCH_USER";
+export const SET_USER = "SET_USER";
+export const SET_LOADING = "SET_LOADING";
+export const REGISTER = "REGISTER";
+export const FETCH_REGISTER = "FETCH_REGISTER";
+export const ERROR_LOGIN = "ERROR_LOGIN";
+export const ERROR_REGISTER = "ERROR_REGISTER";
+export const LOADING_PRODUCT = "LOADING_PRODUCT";
+export const FETCH_CATEGORY = "FETCH_CATEGORY";
+export const SET_CATEGORY = "SET_CATEGORY";
+export const FETCH_PRODUCT = "FETCH_PRODUCT";
+export const SET_PRODUCT = "SET_PRODUCT";

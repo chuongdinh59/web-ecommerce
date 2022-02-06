@@ -37,10 +37,10 @@
   position: relative;
   &::after{
       position: absolute;
-      width: 100px;
+      width: 200px;
       height: 100px;
       top:-25px;
-      right: -30px;
+      right: -40%;
       content: "";
       background-color: transparent;
   }
@@ -78,4 +78,22 @@ a.discovery:hover{
 a:hover + .icon{
   border: 3px solid #2ecc71;
   right: -25%;
+}
+
+@import '../../assets/css/style.scss';
+
+.buy-btn{
+  
+  outline: none;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  background-color: $green1;
+  cursor: pointer;
+  border-radius: $radius-10;
+  &-size-medium{
+    width: 200px;
+    padding: 15px 0;
+  }
+  
 }

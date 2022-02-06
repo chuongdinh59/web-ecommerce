@@ -17,6 +17,15 @@
             object-fit: cover;
             border-radius: $radius-10;
     }
+    &-carousel{
+        overflow: hidden;
+        position: relative;
+    }
+    .flickity-button-icon{
+        path{
+            stroke: #fff;
+        }
+    }
 }
 
 @include tablet{

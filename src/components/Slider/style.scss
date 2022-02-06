@@ -4,7 +4,8 @@
 .slider{
     position: relative;
     height: 100vh;
-    
+    overflow: hidden;
+    padding: 0 !important;
     @include tablet{
         height: 70vh;
     }
@@ -13,11 +14,22 @@
     }
     margin-top: calc($header-lg * -1) !important;
     z-index: 1;
+    &-center{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+    }
     &-item{
+        width: 100%;
+        position: relative;
         &__img{
             position: absolute;
             right: 10%;
             top: 60%;
+            height: 300px;
+            width: 400px;
             @include mobile{
                 top: 50%;
                 img{
@@ -76,7 +88,6 @@
             }
         }
         &__shape {
-            
             height: 472px;
             width: 472px;
             @include mobile{
@@ -88,7 +99,6 @@
                 height: 320px;
                 
             }
-            
             position: absolute;
             right: 0;
             top: 50%;
@@ -104,7 +114,12 @@
             -o-transform: translate(0, -50%);
         }
     }
-   
+    .flickity-button{
+        display: none;
+    }
+   .flickity-page-dots{
+        display: none;
+   }
 }
 
 

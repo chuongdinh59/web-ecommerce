@@ -1,5 +1,6 @@
 import Rate from "components/Rating";
 import React from "react";
+import Flickity from "react-flickity-component";
 import "./style.scss";
 export function Review({ children }) {
   return (
@@ -20,14 +21,16 @@ export function Review({ children }) {
   );
 }
 export function ReviewCarousel(props) {
+  const flickityOptions = {
+    initialIndex: 0,
+    cellAlign: "left",
+  };
   return (
     <section className="review-carousel">
-      <div className="container">
-        <p className="review-carousel__intro text">WHAT BUYERS SAY</p>
-        <p className="review-carousel__heading heading">
-          Lastest buyers Reviews
-        </p>
-        <div className="review-carousel__content grid grid-col-3 grid-col-sm-1">
+      <p className="review-carousel__intro text">WHAT BUYERS SAY</p>
+      <p className="review-carousel__heading heading">Lastest buyers Reviews</p>
+      <div className="review-carousel__content grid grid-col-3 grid-col-sm-1">
+        <Flickity FlickityOptions={flickityOptions}>
           <Review>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
             adipisci distinctio assumenda voluptatum necessitatibus, dolor
@@ -37,7 +40,79 @@ export function ReviewCarousel(props) {
             eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
             vitae, dolorem minima?
           </Review>
-        </div>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+          <Review>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+            adipisci distinctio assumenda voluptatum necessitatibus, dolor
+            dignissimos voluptas, reiciendis eaque excepturi doloremque corrupti
+            ab ea veniam vero consequunturadipisci distinctio assumenda
+            voluptatum necessitatibus, dolor dignissimos voluptas, reiciendis
+            eaque excepturi doloremque corrupti ab ea veniam vero consequuntu
+            vitae, dolorem minima?
+          </Review>
+        </Flickity>
       </div>
     </section>
   );

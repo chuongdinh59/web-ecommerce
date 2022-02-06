@@ -1,23 +1,38 @@
-import Filter from "components/Filter";
-import HelperText from "components/HelperText";
-import { Gird } from "components/Icon";
-import { Section } from "components/Icon";
-import { Arrow, User } from "components/Icon";
-import React from "react";
-import ProductList from "./ProductList";
+import { Arrow, Gird, Section } from "components/Icon";
+import Paginate from "components/Paginate";
+import { Product } from "components/Product";
+import { SkeletonList } from "components/SkeletonItem";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { fetchCategoryAction, fetchProductAction } from "redux/actions/product";
+import { objectToUrlQuery, urlQuery } from "utils/queryUrl";
+import PriceFilter from "./SildeFilter/PriceFilter";
+import RateFilter from "./SildeFilter/RateFilter";
+import SearchFilter from "./SildeFilter/SearchFilter";
+import SortFilter from "./SildeFilter/SortFilter";
 import "./style.scss";
 function Shop(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { productlist, category, loading } = useSelector(
+    (store) => store.product
+  );
+
+  const objUrl = useLocation();
+
+  useEffect(() => {
+    dispatch(fetchCategoryAction());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchProductAction(objUrl.search));
+  }, [objUrl.search]);
+
   return (
     <section className="shop">
       <div className="container product-list__heading">
-        <div className="product-list__heading__text">
-          <h3 className=" heading">Danh sách sản phẩm</h3>
-          <Arrow rotate="-90deg" />
-        </div>
-        <HelperText
-          placeholder="Bạn có có muốn chúng tôi tìm giúp ?"
-          Icon={<User />}
-        />
+        <SearchFilter />
       </div>
 
       <div className="container shop-side__second">
@@ -51,83 +66,59 @@ function Shop(props) {
             <Section /> <span className="title">List view</span>
           </div>
         </div>
-        <div className="sort">
-          <h3 className="title">Sắp xếp: </h3>
-          <label>
-            <Filter type="text" content="Giá tăng dần" />
-          </label>
-          <label>
-            <Filter type="text" content="Giá giảm dần" />
-          </label>
-        </div>
+        <SortFilter />
       </div>
       <div className="container shop-container grid grid-col-sm-1">
         <div className="shop-side">
           <h3 className="title">Danh mục sản phẩm</h3>
           <ul className="shop-side__category">
-            <li className="category__item title">Thiết bị điện tử</li>
-            <li className="category__item title">Thiết bị điện tử</li>
-            <li className="category__item title">Thiết bị điện tử</li>
-            <li className="category__item title">Thiết bị điện tử</li>
-            <li className="category__item title">Thiết bị điện tử</li>
-            <li className="category__item title">Thiết bị điện tử</li>
-            <li className="category__item title">Thiết bị điện tử</li>
-            <li className="category__item title">Thiết bị điện tử</li>
+            <li
+              className="category__item title"
+              onClick={() => {
+                navigate("/shop");
+              }}
+            >
+              Tất cả
+            </li>
+            {category &&
+              category?.map((item) => {
+                const url = urlQuery();
+                url.page = 1;
+                url.categories = item?.id;
+                const strURL = objectToUrlQuery(url);
+                return (
+                  <Link to={`/shop?${strURL}`}>
+                    <li key={item._id} className="category__item title">
+                      {item.title}
+                    </li>
+                  </Link>
+                );
+              })}
           </ul>
-
           <h3 className="title">Đánh giá</h3>
-          <ul className="shop-side__category">
-            <li>
-              <label>
-                <Filter type="rate" rating={5} field="5 sao" />
-              </label>
-            </li>
-            <li>
-              <label>
-                <Filter type="rate" rating={4} field="4 sao" />
-              </label>
-            </li>
-            <li>
-              <label>
-                <Filter type="rate" rating={3} field="3 sao" />
-              </label>
-            </li>
-            <li>
-              <label>
-                <Filter type="rate" rating={2} field="2 sao" />
-              </label>
-            </li>
-            <li>
-              <label>
-                <Filter type="rate" rating={1} field="1 sao" />
-              </label>
-            </li>
-          </ul>
+          <RateFilter />
           <h3 className="title">Khoảng giá</h3>
-          <div className="filter-price">
-            <div className="filter--range">
-              <Filter type="range" />
-            </div>
-            <div className="filter-input">
-              <div>
-                <p>Min</p>
-                <HelperText />
-              </div>
-              <div>
-                <p>Max</p>
-                <HelperText />
-              </div>
-            </div>
-            <div className="filter-price__control">
-              <button>Apply</button>
-              <button>Reset </button>
-            </div>
-          </div>
+          <PriceFilter />
         </div>
-        <div className="shop-main">
-          <ProductList />
+        <div className="shop-main grid grid-col-3">
+          {loading || !productlist ? (
+            <SkeletonList length={15} />
+          ) : (
+            productlist?.map((item) => {
+              return (
+                <Product
+                  key={item._id}
+                  src={item?.images[0]?.thumbnail_url}
+                  name={item?.name}
+                  price={item?.price}
+                  real_price={item?.real_price}
+                />
+              );
+            })
+          )}
         </div>
       </div>
+      <Paginate />
     </section>
   );
 }
