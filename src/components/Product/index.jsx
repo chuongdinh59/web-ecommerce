@@ -1,18 +1,18 @@
+import { Rating } from "@mui/material";
 import ButtonSe from "components/Button/ButtonSe";
-import { Times } from "components/Icon";
-import { Buy, Eye, Heart } from "components/Icon";
-import Rate from "components/Rating";
+import { Buy, Eye, Heart, Times } from "components/Icon";
 import { SkeletonList } from "components/SkeletonItem";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
+import { getCartAction } from "redux/actions/cart";
 import { numberWithCommas } from "utils/numberWithComas";
 import "./style.scss";
 
 export function ProductList({ data }) {
   const [dataRender, setDataRender] = useState();
   const { loading } = useSelector((store) => store.product);
-  console.log(dataRender);
   useEffect(() => {
     setDataRender(data?.res1.data);
   }, [data]);
@@ -58,6 +58,7 @@ export function ProductList({ data }) {
           Camera
         </button>
       </div>
+      {/* grid grid-col-4 grid grid-col-sm-1 grid-col-md-2 */}
       <div className="product-list__card grid grid-col-4 grid grid-col-sm-1 grid-col-md-2">
         {loading ? (
           <SkeletonList />
@@ -65,17 +66,21 @@ export function ProductList({ data }) {
           dataRender?.map((item) => {
             return (
               <Product
-                key={item._id}
+                key={item?._id}
+                id={item?._id}
                 src={item?.images[0]?.thumbnail_url}
                 name={item?.name}
                 price={item?.price}
+                defaultPrice={item?.real_price}
                 real_price={item?.real_price}
+                shortdesc={item?.short_description}
+                rating={item?.rating_average}
+                slug={item?.slug}
               />
             );
           })
         )}
       </div>
-
       <div className="discovery-more">
         <span className="title">Discovery More</span>
       </div>
@@ -83,9 +88,14 @@ export function ProductList({ data }) {
   );
 }
 
-export function Product({ src, name, price, real_price }) {
+export function Product(props) {
+  const { id, src, name, price, real_price, shortdesc, rating, slug } = props;
+  const dispatch = useDispatch();
   const [showDetail, setShowDetail] = useState(false);
-
+  const { view } = useSelector((store) => store.product);
+  const handleCart = () => {
+    dispatch(getCartAction({ ...props, number: 1 }));
+  };
   return (
     <>
       {showDetail && (
@@ -99,7 +109,7 @@ export function Product({ src, name, price, real_price }) {
             </div>
             <div className="product-list__detail__info">
               <h3>{name}</h3>
-              <Rate index={5} />
+              <Rating value={rating} precision={0.5} readOnly />
               <p>Description Description Description Description Description</p>
               <div className="number">
                 <span className="price price--sell">
@@ -119,9 +129,11 @@ export function Product({ src, name, price, real_price }) {
           </div>
         </div>
       )}
-      <div className="product">
+      <div className={`product ${view === "grid" ? "grid-view" : ""} ${id}`}>
         <div className="product-img">
-          <img src={src} alt="product" />
+          <Link to={`/${slug}`}>
+            <img src={src} alt="product" />
+          </Link>
           <div className="product-img__control">
             <span
               className="product-img__control__btn"
@@ -130,7 +142,7 @@ export function Product({ src, name, price, real_price }) {
               <Eye />
               <div className="overplay"></div>
             </span>
-            <span className="product-img__control__btn">
+            <span className="product-img__control__btn" onClick={handleCart}>
               <Buy />
               <div className="overplay"></div>
             </span>
@@ -142,8 +154,9 @@ export function Product({ src, name, price, real_price }) {
         </div>
         <div className="product-desc">
           <h5 className="product-desc__name title">{name}</h5>
+          <p className="product-desc__content">{shortdesc}</p>
           <div className="product-desc__price">
-            <Rate index={5} />
+            <Rating value={rating} precision={0.5} readOnly />
             <div className="number">
               <span className="price price--sell">
                 {numberWithCommas(price) + "VND"}

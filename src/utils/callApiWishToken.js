@@ -4,12 +4,11 @@ import authService from "service/authService";
 
 const callApiWithToken =async (url, options) => {
     const token = JSON.parse(localStorage.getItem('token'))
-    
     options = {
         ...options,
         headers: {
             ...options?.headers,
-            'Authorization': `Bearer ${token.accessToken}`,
+            'Authorization': `Bearer ${token?.accessToken}`,
             'Content-Type' : 'application/json'
         }
     }

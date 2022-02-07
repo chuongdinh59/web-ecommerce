@@ -1,4 +1,5 @@
 import CountDown from "components/Countdown";
+import Helmet from "components/Helmet";
 import Partner from "components/Partner";
 import Policy from "components/Policy";
 import { ProductList } from "components/Product";
@@ -36,7 +37,7 @@ function Home(props) {
   }, []);
 
   return (
-    <>
+    <Helmet title="Trang chủ">
       <Slider />
       <Policy />
       <ColectionPreview />
@@ -44,7 +45,7 @@ function Home(props) {
       <CountDown />
       <ReviewCarousel />
       <Partner />
-    </>
+    </Helmet>
   );
 }
 

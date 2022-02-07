@@ -20,7 +20,7 @@ export function SkeletonList({ length = 15 }) {
   return (
     <>
       {data?.map((item) => {
-        return <SkeletonItem />;
+        return <SkeletonItem key={item} />;
       })}
     </>
   );

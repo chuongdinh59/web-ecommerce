@@ -1,34 +1,51 @@
 import { Bin } from "components/Icon";
 import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  decreaseCartAction,
+  increaseCartAction,
+  removeCartAction,
+} from "redux/actions/cart";
+import { numberWithCommas } from "utils/numberWithComas";
 import "./style.scss";
 function CartItem(props) {
+  const { id, src, name, real_price, number, defaultPrice } = props;
+  const dispatch = useDispatch();
   return (
     <div className="cart-item">
       <label className="cart-item__info">
-        <input type="checkbox" />
         <div className="cart-item__info__content">
-          <img
-            src="https://anphat.com.vn/media/product/33475_sony_playstation_5.jpg"
-            alt=""
-          />
-          <p className="cart-item__info__name">
-            Máy chơi game PS5 Máy chơi game PS5 Máy chơi game PS5 Máy chơi game
-            PS5 Máy chơi game PS5
-          </p>
+          <img src={src} alt="" />
+          <p className="cart-item__info__name">{name}</p>
         </div>
       </label>
-      <span className="cart-item__price">1,000,000,000đ</span>
+      <span className="cart-item__price">
+        {numberWithCommas(defaultPrice) + "đ"}
+      </span>
       <div className="cart-item__quatity">
-        <button>
+        <button
+          onClick={() => {
+            dispatch(decreaseCartAction(props));
+          }}
+        >
           <span>-</span>
         </button>
-        <span className="quantity">1</span>
-        <button>
+        <span className="quantity">{number}</span>
+        <button
+          onClick={() => {
+            dispatch(increaseCartAction(props));
+          }}
+        >
           <span>+</span>
         </button>
       </div>
-      <span className="cart-item__total">1,000,000,000đ</span>
-      <span>
+      <span className="cart-item__total">
+        {numberWithCommas(real_price) + "đ"}
+      </span>
+      <span
+        onClick={() => dispatch(removeCartAction(props))}
+        className="pointer"
+      >
         <Bin />
       </span>
     </div>

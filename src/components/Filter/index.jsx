@@ -7,7 +7,6 @@ function Filter({ type = "", field = "Giá tăng dần", rating = 5 }) {
       {(type === "rate" || type === "text") && (
         <>
           <input type="checkbox" />
-          {/* checked={fieldSort === field} */}
           {type === "rate" && <Rate index={rating} />}
           <span className="filter-field">{field}</span>
         </>

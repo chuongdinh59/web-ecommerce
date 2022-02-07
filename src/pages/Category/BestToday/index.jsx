@@ -38,11 +38,16 @@ function BestSeller(props) {
             dataRender?.map((item) => {
               return (
                 <Product
+                  id={item._id}
                   key={item._id}
                   src={item?.images[0]?.thumbnail_url}
                   name={item?.name}
                   price={item?.price}
+                  defaultPrice={item?.price}
                   real_price={item?.real_price}
+                  shortdesc={item?.short_description}
+                  rating={item?.rating_average}
+                  slug={item?.slug}
                 />
               );
             })}

@@ -1,4 +1,7 @@
 import { SET_PRODUCT } from "constant";
+import { LIST_VIEW } from "constant";
+import { SET_PRODUCT_DETAIL } from "constant";
+import { GRID_VIEW } from "constant";
 import { SET_CATEGORY } from "constant";
 import { LOADING_PRODUCT } from "constant";
 
@@ -30,6 +33,22 @@ const productReducer = (state = initialValue, action) => {
                 loading: false,
                 productlist: action.payload.data,
                 paginate: action.payload.paginate
+            }
+        case GRID_VIEW:
+            return {
+                ...state,
+                view: 'grid'
+            }
+        case LIST_VIEW:
+            return {
+                ...state,
+                view: "list"
+            }
+        case SET_PRODUCT_DETAIL:
+            return {
+                ...state,
+                loading: false,
+                productDetail: action.payload?.data
             }
         default: 
             

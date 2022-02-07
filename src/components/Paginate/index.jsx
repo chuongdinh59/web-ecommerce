@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { objectToUrlQuery, urlQueryToObject } from "utils/queryUrl";
 import "./style.scss";
-function Paginate({ totalPage = 5 }) {
+function Paginate({ totalPage = 5, paginate }) {
   const urlQuery = () => {
     var search = window.location.search.substring(1);
     return !search
@@ -23,6 +23,9 @@ function Paginate({ totalPage = 5 }) {
     const listPageRender = [];
     let start = currentPage - 2 > 0 ? currentPage - 2 : 1;
     let end = start + 4;
+    while (end > paginate?.totalPage) {
+      end--;
+    }
     for (let i = start; i <= end; i++) {
       queryUrl.page = i;
       let strUrl = objectToUrlQuery(queryUrl);
@@ -52,10 +55,9 @@ function Paginate({ totalPage = 5 }) {
           ...queryUrl,
           page: currentPage + 1,
         })}`}
-        className="paginate-btn next"
-        onClick={() => {
-          console.log(10);
-        }}
+        className={`paginate-btn next ${
+          currentPage === paginate?.totalPage && "disable"
+        }`}
       >
         <Arrow rotate="-90deg" />
       </Link>

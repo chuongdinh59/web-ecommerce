@@ -1,5 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import { fetchUserAction } from 'redux/actions/user'
+import cartReducer from 'redux/reducer/cart'
 import productReducer from 'redux/reducer/product'
 import userReducer from 'redux/reducer/user'
 import rootSaga from '../redux/saga'
@@ -12,7 +14,8 @@ const composeEnhancers = typeof window === 'object' && window['__REDUX_DEVTOOLS_
 
 const rootReducer = combineReducers({
     user: userReducer,
-    product: productReducer
+    product: productReducer,
+    cart: cartReducer
 });
 
 const sagaMiddleware = createSagaMiddleware()
@@ -24,5 +27,9 @@ const store = createStore(
 sagaMiddleware.run(rootSaga)
 
 
+const token = JSON.parse(localStorage.getItem('token'))
+if (token) {
+    store.dispatch(fetchUserAction())
+}
 
 export default store

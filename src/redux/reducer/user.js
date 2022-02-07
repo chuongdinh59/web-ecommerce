@@ -1,5 +1,6 @@
 import { REGISTER } from "constant";
 import { ERROR_LOGIN } from "constant";
+import { LOGOUT } from "constant";
 import { ERROR_REGISTER } from "constant";
 import { SET_LOADING } from "constant";
 import { SET_USER } from "constant";
@@ -17,7 +18,7 @@ const userReducer = (state = initialValue, action) => {
     case SET_USER:
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload,
         loading: true,
         login: true,
         loginErr: "",
@@ -37,7 +38,6 @@ const userReducer = (state = initialValue, action) => {
         registerSuccess: "Congratulations register successful!!! Please login again!"
       }
     case ERROR_REGISTER:
-      console.log('IN ERROR REGISTER');
       return {
         ...state,
         loading: false,
@@ -48,6 +48,13 @@ const userReducer = (state = initialValue, action) => {
       return {
         ...state,
         loginErr: action.payload
+      }
+    case LOGOUT:
+      localStorage.removeItem('token')
+      return {
+        ...state,
+        login: false,
+        user: null
       }
     default:
       return {

@@ -1,5 +1,6 @@
 import { REGISTER } from "constant";
 import { ERROR_REGISTER } from "constant";
+import { LOGOUT } from "constant";
 import { ERROR_LOGIN } from "constant";
 import { FETCH_REGISTER } from "constant";
 import { SET_LOADING } from "constant";
@@ -55,3 +56,9 @@ export const errorLoginAction = (data) => {
     payload: data
   }
 } 
+
+export const logoutAction = () => {
+  return {
+    type: LOGOUT
+  }
+}

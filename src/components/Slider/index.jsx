@@ -36,9 +36,10 @@ function Slider(props) {
     <section className="slider container">
       <div className="slider-center">
         <Flickity options={flickityOptions}>
-          {sliders?.map((slider) => {
+          {sliders?.map((slider, index) => {
             return (
               <SliderItem
+                key={index}
                 src={slider.img}
                 content={slider.content}
                 color={slider.bgShape}

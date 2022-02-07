@@ -7,7 +7,7 @@ function CartHeader(props) {
       <div className="cart-header__icon">
         <Buy />
       </div>
-      <span className="cart-header__number">1</span>
+      <span className="cart-header__number">0</span>
     </div>
   );
 }

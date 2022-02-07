@@ -1,28 +1,50 @@
-import Footer from "components/Footer";
-import Header from "components/Header";
-import Rate from "components/Rating";
+import { Rating } from "@mui/material";
+import Helmet from "components/Helmet";
 import BestSeller from "pages/Category/BestToday";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchDetailProductAction } from "redux/actions/product";
+import { numberWithCommas } from "utils/numberWithComas";
 import Tag from "../Tag";
 import "./style.scss";
 function ProductDetail(props) {
+  const { slug } = useParams();
+  const { productDetail, loading } = useSelector((store) => store.product);
+  let productItem = productDetail[0];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDetailProductAction(slug));
+  }, []);
   return (
-    <>
-      <Header />
+    <Helmet title="Sản phẩm">
       <section className="product-detail grid grid-col-sm-1 container">
         <div className="product-detail__img">
-          <img src="./img/laptop.jpg" alt="" />
+          <img src={productItem?.thumbnail_url} alt="" />
         </div>
         <div className="product-detail__info">
           <h3 className="product-detail__info__name title">
-            CỐC GIỮ NHIỆT ELMICH INOX 304 470ML EL3668
+            {productItem?.name}
           </h3>
-          <Rate index={5} /> (Xem 168 đánh giá)
+          <Rating
+            value={productItem?.rating_average || 0}
+            precision={0.5}
+            readOnly
+          />
+          <span>(Xem {productItem?.discount_rate} đánh giá)</span>
           <div className="product-detail__info__price">
-            <div className="price--real">92,000 đ</div>
+            <div className="price--real">
+              {numberWithCommas(productItem?.real_price)}
+            </div>
             <div className="sale">
-              <span className="price--sell">100,000 đ</span>
-              <Tag color="red" size="medium" />
+              <span className="price--sell">
+                {numberWithCommas(productItem?.price)}
+              </span>
+              <Tag
+                color="red"
+                size="medium"
+                content={productItem?.discount_rate + "%"}
+              />
             </div>
           </div>
           <div className="product-detail__info__address">
@@ -33,14 +55,7 @@ function ProductDetail(props) {
             </a>
           </div>
           <p className="product-detail__info__shortdesc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-            consequatur voluptatem excepturi quod, sint dicta quas aut,
-            voluptatibus dolores deserunt earum! Aspernatur itaque non
-            consequatur cum nobis magni distinctio unde! Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Quis consequatur voluptatem
-            excepturi quod, sint dicta quas aut, voluptatibus dolores deserunt
-            earum! Aspernatur itaque non consequatur cum nobis magni distinctio
-            unde!
+            {productItem?.short_description}
           </p>
           <div className="product-detail__info__btn">
             <div className="product-detail__info__btn__quantity">
@@ -58,10 +73,13 @@ function ProductDetail(props) {
             </div>
           </div>
         </div>
+        <div
+          className="product-detail__desc"
+          dangerouslySetInnerHTML={{ __html: productItem?.description }}
+        ></div>
       </section>
       <BestSeller />
-      <Footer />
-    </>
+    </Helmet>
   );
 }
 

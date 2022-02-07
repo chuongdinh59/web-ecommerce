@@ -5,7 +5,12 @@ import { SkeletonList } from "components/SkeletonItem";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { fetchCategoryAction, fetchProductAction } from "redux/actions/product";
+import {
+  fetchCategoryAction,
+  fetchProductAction,
+  setGridViewAction,
+  setListViewAction,
+} from "redux/actions/product";
 import { objectToUrlQuery, urlQuery } from "utils/queryUrl";
 import PriceFilter from "./SildeFilter/PriceFilter";
 import RateFilter from "./SildeFilter/RateFilter";
@@ -15,7 +20,7 @@ import "./style.scss";
 function Shop(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { productlist, category, loading } = useSelector(
+  const { productlist, category, loading, paginate, view } = useSelector(
     (store) => store.product
   );
 
@@ -59,10 +64,16 @@ function Shop(props) {
       </div>
       <div className="view container">
         <div className="view-main">
-          <div className="view-grid view-item">
+          <div
+            className="view-grid view-item"
+            onClick={() => dispatch(setGridViewAction())}
+          >
             <Gird /> <span className="title">Grid view</span>
           </div>
-          <div className="view-list view-item">
+          <div
+            className="view-list view-item"
+            onClick={() => dispatch(setListViewAction())}
+          >
             <Section /> <span className="title">List view</span>
           </div>
         </div>
@@ -87,10 +98,8 @@ function Shop(props) {
                 url.categories = item?.id;
                 const strURL = objectToUrlQuery(url);
                 return (
-                  <Link to={`/shop?${strURL}`}>
-                    <li key={item._id} className="category__item title">
-                      {item.title}
-                    </li>
+                  <Link to={`/shop?${strURL}`} key={item._id}>
+                    <li className="category__item title">{item.title}</li>
                   </Link>
                 );
               })}
@@ -100,25 +109,33 @@ function Shop(props) {
           <h3 className="title">Khoảng giá</h3>
           <PriceFilter />
         </div>
-        <div className="shop-main grid grid-col-3">
+        {/* grid grid-col-3 */}
+        <div
+          className={`shop-main grid grid-col-${view === "grid" ? "1" : "3"} `}
+        >
           {loading || !productlist ? (
             <SkeletonList length={15} />
           ) : (
             productlist?.map((item) => {
               return (
                 <Product
+                  id={item._id}
                   key={item._id}
                   src={item?.images[0]?.thumbnail_url}
                   name={item?.name}
                   price={item?.price}
+                  defaultPrice={item?.real_price}
                   real_price={item?.real_price}
+                  shortdesc={item?.short_description}
+                  rating={item?.rating_average}
+                  slug={item?.slug}
                 />
               );
             })
           )}
         </div>
       </div>
-      <Paginate />
+      <Paginate paginate={paginate} />
     </section>
   );
 }

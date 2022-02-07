@@ -87,6 +87,7 @@
     &-item{
         display: grid;
         grid-template-columns: 2fr 4fr;
+        margin-bottom: 10px;
          @include mobile{
             input{
                 font-size: 13px;
@@ -112,7 +113,8 @@
         }
     }
     .default-address{
-        padding: 10px 0;
+        padding-top: 10px;
+        display: block;
         
     }
     &-form{
@@ -122,5 +124,5 @@
             justify-content: flex-end;
         }
     }
-   
+    
 }

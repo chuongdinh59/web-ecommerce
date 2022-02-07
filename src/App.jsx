@@ -1,3 +1,4 @@
+import ProductDetail from "components/ProductDetail";
 import MainLayout from "layout/MainLayout";
 import AuthPage from "pages/Auth";
 import UpdateInfo from "pages/Auth/UpdateInfo";
@@ -27,9 +28,10 @@ function App() {
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Home />} />
               <Route path="/shop" element={<Category />} />
+              <Route path="/:slug" element={<ProductDetail />} />
             </Route>
             <Route path="/login" element={<AuthPage />} />
-            <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/Cart" element={<CheckOut />} />
             <Route path="/update" element={<UpdateInfo />} />
           </Routes>
           {/* </ScrollToTop> */}

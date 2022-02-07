@@ -1,3 +1,4 @@
+import Helmet from "components/Helmet";
 import { Loader } from "components/Icon";
 import { Facebook, Github, Insta, Twitter } from "components/Icon";
 import React, { useEffect } from "react";
@@ -29,7 +30,7 @@ function AuthPage(props) {
     }
   }, [login]);
   return (
-    <>
+    <Helmet title="Đăng kí / Đăng nhập">
       {loading && <Loader />}
       <div className="auth">
         <div className="auth-container  " ref={containeRef}>
@@ -105,7 +106,7 @@ function AuthPage(props) {
           </div>
         </div>
       </div>
-    </>
+    </Helmet>
   );
 }
 

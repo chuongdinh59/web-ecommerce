@@ -4,10 +4,8 @@ import authService from 'service/authService';
 import userService from 'service/userService';
 
 export function* fetchLogin(data) {
-     
     const token = yield call(authService.login, data.payload);
     if (token?.error) {
-        console.log(1);
         yield put(errorLoginAction(token?.message))
     }
     else {

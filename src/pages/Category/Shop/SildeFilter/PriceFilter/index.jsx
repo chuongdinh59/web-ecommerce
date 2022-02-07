@@ -32,9 +32,7 @@ function PriceFilter(props) {
       );
     }
   };
-  console.log(form);
   const url = urlQuery();
-  // console.log(url?.minPrice);
   return (
     <div className="filter-price">
       <div className="filter--range">

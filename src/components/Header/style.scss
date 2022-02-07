@@ -151,6 +151,7 @@
             }
         }
     }
+  
     &-main{
         @include mobile {
                display: none !important;
@@ -190,6 +191,27 @@
         &__account{
             @include flex(center, space-between);
             gap: 0 20px;
+            position: relative;
+            &:hover  &__moreinfo{
+                display: block;
+            }
+            &__moreinfo{
+                position: absolute;
+                display: none;
+                padding: 10px 30px; 
+                top: 100%;
+                left: -50%;
+                background-color: rgba(0,0,0,0.6);
+                border-radius: $radius-10;
+            }
+            .item{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: #fff;
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
             &__preview{
                 display: flex;
                 flex-direction: column;

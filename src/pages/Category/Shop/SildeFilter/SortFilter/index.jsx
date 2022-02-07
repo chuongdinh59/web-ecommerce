@@ -23,6 +23,7 @@ function SortFilter(props) {
       navigate(`/shop?${strUrl}`);
     }
   }, [sort]);
+
   return (
     <div className="sort">
       <h3 className="title">Sắp xếp: </h3>
@@ -32,11 +33,12 @@ function SortFilter(props) {
       <label>
         <Filter type="text" field="Giá giảm dần" />
       </label> */}
-      {content.map((item) => {
+      {content.map((item, index) => {
         url.sort = item.sort;
         const strUrl = objectToUrlQuery(url);
         return (
           <Link
+            key={index}
             className={`${item.sort === sort?.sort ? "active" : ""}`}
             to={`/shop?${strUrl}`}
             onClick={() => {
@@ -50,7 +52,11 @@ function SortFilter(props) {
               }
             }}
           >
-            <input type="checkbox" checked={item.sort === sort?.sort} />
+            <input
+              type="checkbox"
+              checked={item.sort === sort?.sort || false}
+              onChange={() => {}}
+            />
             <span>{item.con}</span>
           </Link>
         );

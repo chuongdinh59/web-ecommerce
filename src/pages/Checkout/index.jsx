@@ -1,31 +1,53 @@
 import CartItem from "components/CartItem";
 import Filter from "components/Filter";
 import Header from "components/Header";
+import Helmet from "components/Helmet";
 import HelperText from "components/HelperText";
 import { Bin } from "components/Icon";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCartAction } from "redux/actions/cart";
+import { numberWithCommas } from "utils/numberWithComas";
 import "./style.scss";
 function CheckOut(props) {
+  const { listCart, amount, num } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
   return (
-    <>
+    <Helmet title="Giỏ Hàng">
       <Header />
       <section className="checkout container">
         <div className="cart">
           <div className="cart-field">
             <label className="cart-field__all">
-              <Filter type="text" field="Tất cả ( 1 sản phẩm )" />
+              <span>Tất cả ( {num >= 0 ? num : 0} sản phẩm ) </span>
             </label>
             <span className="cart-field__price">Đơn giá</span>
             <span className="cart-field__quantity">Số lượng</span>
             <span className="cart-field__total">Thành tiền</span>
-            <span className="cart-field__delete">
+            <span
+              className="cart-field__delete pointer"
+              onClick={() => dispatch(clearCartAction())}
+            >
               <Bin />
             </span>
           </div>
           <div className="cart-main">
+            {/* <CartItem />
             <CartItem />
-            <CartItem />
-            <CartItem />
+            <CartItem /> */}
+            {listCart &&
+              listCart?.map((cart) => {
+                return (
+                  <CartItem
+                    id={cart?.id}
+                    src={cart?.src}
+                    name={cart?.name}
+                    real_price={cart?.real_price}
+                    number={cart?.number}
+                    defaultPrice={cart?.defaultPrice}
+                  />
+                );
+              })}
           </div>
         </div>
         <div className="checkout-info">
@@ -47,7 +69,7 @@ function CheckOut(props) {
           <div className="checkout-info__price">
             <div className="price-temp price-item">
               <span className="title">Tạm tính</span>
-              <span>0 đ</span>
+              <span>{numberWithCommas(amount) + " đ"}</span>
             </div>
             <div className="price-sale price-item">
               <span className="title">Giảm giá</span>
@@ -55,7 +77,7 @@ function CheckOut(props) {
             </div>
             <div className="price-total price-item">
               <span className="title">Tổng cộng</span>
-              <span>0 đ</span>
+              <span>{numberWithCommas(amount) + " đ"}</span>
             </div>
             <div className="price-item voucher">
               <HelperText placeholder="Bạn có voucher chứ " />
@@ -63,12 +85,12 @@ function CheckOut(props) {
           </div>
           <div className="checkout-info__btn">
             <div>
-              <button>Mua Hàng ( 0 sản phẩm )</button>
+              <button>Mua Hàng ( {num >= 0 ? num : 0} sản phẩm )</button>
             </div>
           </div>
         </div>
       </section>
-    </>
+    </Helmet>
   );
 }
 export default CheckOut;
