@@ -129,6 +129,7 @@ function Shop(props) {
                   shortdesc={item?.short_description}
                   rating={item?.rating_average}
                   slug={item?.slug}
+                  item={item}
                 />
               );
             })

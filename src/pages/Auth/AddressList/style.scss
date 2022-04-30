@@ -1,0 +1,37 @@
+.address-item{
+    padding: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    &__heading{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__info{
+            display: flex;
+            align-items: center;
+            gap: 0 10px;
+            .status{
+                color: #57B894;
+            }
+        }
+    }
+    &__btn{
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+        path{
+            fill: #ff0000;
+        }
+        &__edit{
+            font-size: 14px;
+        }
+    }
+}
+
+.addresslist{
+    &-add{
+        padding: 20px;
+        font-size: 20px;
+        color: #4267b2;
+    }
+}

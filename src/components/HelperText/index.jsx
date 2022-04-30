@@ -8,6 +8,7 @@ function HelperText({
   error = null,
   name,
   onKeyUp = null,
+  ...params
 }) {
   return (
     <>
@@ -18,6 +19,7 @@ function HelperText({
           placeholder={placeholder}
           {...register}
           onKeyUp={onKeyUp}
+          {...params}
         />
         <span className="help-icon">{Icon}</span>
       </div>

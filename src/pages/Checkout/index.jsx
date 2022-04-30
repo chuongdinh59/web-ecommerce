@@ -1,19 +1,24 @@
 import CartItem from "components/CartItem";
-import Filter from "components/Filter";
 import Header from "components/Header";
 import Helmet from "components/Helmet";
 import HelperText from "components/HelperText";
 import { Bin } from "components/Icon";
+import ModalAddress from "components/Modal/ModalAddress";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { clearCartAction } from "redux/actions/cart";
+import { setModalAddressAction } from "redux/actions/modal";
 import { numberWithCommas } from "utils/numberWithComas";
 import "./style.scss";
 function CheckOut(props) {
   const { listCart, amount, num } = useSelector((store) => store.cart);
+  const { addressToShip } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <Helmet title="Giỏ Hàng">
+      <ModalAddress />
       <Header />
       <section className="checkout container">
         <div className="cart">
@@ -26,46 +31,66 @@ function CheckOut(props) {
             <span className="cart-field__total">Thành tiền</span>
             <span
               className="cart-field__delete pointer"
-              onClick={() => dispatch(clearCartAction())}
+              onClick={() => dispatch(clearCartAction(listCart))}
             >
               <Bin />
             </span>
           </div>
-          <div className="cart-main">
-            {/* <CartItem />
-            <CartItem />
-            <CartItem /> */}
-            {listCart &&
-              listCart?.map((cart) => {
+          {listCart?.length > 0 && (
+            <div className="cart-main">
+              {listCart?.map((cart) => {
                 return (
-                  <CartItem
-                    id={cart?.id}
-                    src={cart?.src}
-                    name={cart?.name}
-                    real_price={cart?.real_price}
-                    number={cart?.number}
-                    defaultPrice={cart?.defaultPrice}
-                  />
+                  cart?.number > 0 && (
+                    <CartItem
+                      key={cart?.id}
+                      id={cart?.id}
+                      src={cart?.src}
+                      name={cart?.name}
+                      real_price={cart?.real_price}
+                      number={cart?.number}
+                      defaultPrice={cart?.defaultPrice}
+                    />
+                  )
                 );
               })}
-          </div>
+            </div>
+          )}
         </div>
         <div className="checkout-info">
           <div className="checkout-info__heading">
             <span>Giao tới</span>
-            <a href="!" className="title">
+            <button
+              className="title"
+              onClick={() => {
+                dispatch(setModalAddressAction(true));
+              }}
+            >
               Thay đổi
-            </a>
+            </button>
           </div>
           <div className="checkout-info__preivew">
             <span className="name">Thái Bảo</span>
             <span className="sep"></span>
             <span className="phone">0334436231</span>
           </div>
-          <p className="checkout-info__address text">
-            Xã Tam Thôn Hiệp An Lộc, Xã Tam Thôn Hiệp, Huyện Cần Giờ, Hồ Chí
-            Minh
-          </p>
+          {addressToShip ? (
+            <p className="checkout-info__address text">
+              {addressToShip?.address +
+                ", " +
+                addressToShip?.district +
+                ", " +
+                addressToShip?.province}
+            </p>
+          ) : (
+            <span
+              className="error-address"
+              onClick={() => {
+                navigate("/profile/address");
+              }}
+            >
+              Chưa có địa chỉ mặt định
+            </span>
+          )}
           <div className="checkout-info__price">
             <div className="price-temp price-item">
               <span className="title">Tạm tính</span>
@@ -80,7 +105,7 @@ function CheckOut(props) {
               <span>{numberWithCommas(amount) + " đ"}</span>
             </div>
             <div className="price-item voucher">
-              <HelperText placeholder="Bạn có voucher chứ " />
+              <HelperText placeholder="Voucher giảm giá" />
             </div>
           </div>
           <div className="checkout-info__btn">

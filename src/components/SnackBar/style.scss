@@ -1,0 +1,47 @@
+    .snackbar{
+    position: fixed;
+    top: 2%;
+    right: 2%;
+    padding: 15px 30px;
+    align-items: center;
+    gap: 0 20px;
+    border-radius: 10px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
+    z-index: 50000;
+    transform: translateX(120%);
+    transition: 0.5s ease;
+    display: none;
+    &.open{
+        display: flex;
+    }
+    &-img{
+        height: 20px;
+    }
+    &-status{
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+    }
+    &.success{
+        background-color: rgb(56, 142, 60);
+        transform: translateX(0);
+    }
+    &.warning{
+       background-color: rgb(211, 47, 47);
+    transform: translateX(0);
+
+    }
+    path{
+        fill: #fff;
+        stroke:#fff;
+        
+    }
+    &-delete{
+        height: 20px;
+        svg{
+            width: 15px;
+            height: 100%;
+
+        }
+    }
+}

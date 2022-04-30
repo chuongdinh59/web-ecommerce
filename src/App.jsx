@@ -1,7 +1,12 @@
+import PrivateRouter, { PrivateRouterOutlet } from "components/PrivateRouter";
 import ProductDetail from "components/ProductDetail";
 import MainLayout from "layout/MainLayout";
 import AuthPage from "pages/Auth";
+import AddressList from "pages/Auth/AddressList";
+import MyOrder from "pages/Auth/MyOrder";
+import Profile from "pages/Auth/Profile";
 import UpdateInfo from "pages/Auth/UpdateInfo";
+import WishList from "pages/Auth/WishList";
 import Category from "pages/Category";
 import CheckOut from "pages/Checkout";
 import Home from "pages/Home";
@@ -31,8 +36,21 @@ function App() {
               <Route path="/:slug" element={<ProductDetail />} />
             </Route>
             <Route path="/login" element={<AuthPage />} />
-            <Route path="/Cart" element={<CheckOut />} />
-            <Route path="/update" element={<UpdateInfo />} />
+            <Route
+              path="/cart"
+              element={
+                <PrivateRouter>
+                  <CheckOut />
+                </PrivateRouter>
+              }
+            />
+
+            <Route path="/profile" element={<Profile />}>
+              <Route index element={<UpdateInfo />} />
+              <Route path="wishlist" element={<WishList />} />
+              <Route path="address" element={<AddressList />} />
+              <Route path="order" element={<MyOrder />} />
+            </Route>
           </Routes>
           {/* </ScrollToTop> */}
         </BrowserRouter>

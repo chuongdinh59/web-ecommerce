@@ -13,8 +13,10 @@ export const useForm = (initialValue = {}) => {
   const messages = {};
 
   const onChange = (name) => (ev) => {
-    let value = ev.currentTarget.value;
-
+    let value = ev.currentTarget.value || "";
+    if (name === "confirm") {
+      value = ev.currentTarget.checked;
+    }
     setForm({
       ...form,
       [name]: value,

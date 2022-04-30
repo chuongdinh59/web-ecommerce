@@ -1,12 +1,18 @@
 .location {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    max-width: 500px !important;
+    margin: 0 auto;
+    &-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     select {
-        width: 160px;
         padding: 10px;
-        text-align: center;
-        appearance: none;
+        width: 60%;
+        text-align: left;
+        appearance: none;       
         border-radius: 10px;
         outline: none;
         background-color: #efefef;
@@ -15,4 +21,25 @@
             border: 2px solid #4ea685;
         }
     }
+    .help{
+        width: 60%;
+        input{
+            padding: 10px;
+            font-size: 14px;
+            &::placeholder{
+                color: #000;
+            }
+        }
+    }
+    .filter{
+        &-field{
+        margin-top: 20px;
+        font-size: 13px;
+        
+    }
+    input{
+            margin-top: 20px;
+        }
+    }
+    
 }

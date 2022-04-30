@@ -1,0 +1,110 @@
+@import '../../../assets/css/style.scss';
+.modal-address{
+    padding: 40px;
+    gap: 0 10px;
+    overflow: hidden;
+    &__item{
+        padding: 20px;
+        height: 200px;
+        width: 30%;
+        margin-right: 20px;
+        border: 2px solid $gray;
+        border-radius: $radius-10;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px 0;
+        font-size: 14px;
+        position: relative;
+        &__detail{
+            display: flex;
+            justify-content: space-between;
+        }
+        .text{
+            word-break: all;
+            display:-webkit-box;
+            -webkit-line-clamp:1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+        }
+        &.active{
+            border: 2px solid $blue;
+
+        }
+        &__control{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 0 10px;
+            path{
+                fill: $red;
+            }
+        }
+        &__edit{
+            color: $green1;
+        }
+    }
+    
+    &__paginate{
+        position: absolute;
+        right: 5%;
+        top: calc(200px + 30px )
+    }
+    &__btn{
+        position: absolute;
+        top: calc(200px + 80px );
+        left: 50%;
+        transform: translateX(-50%);
+        a{
+            color: #fff;
+            font-weight: 600;
+        }
+    }
+    &__shape{
+        width: 100vw;
+        height: 100vh;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -110%;
+        background: $green1;
+    }
+    &__img{
+        width: 300px;
+        position: absolute;
+        bottom: 2%;
+        z-index: 10;
+        display: flex;
+        
+        &.img-2{
+            right: 20%;
+        }
+        &.img-1{
+            left: 20%;
+        }
+    }
+
+}
+
+.modal-addaddress{
+    position: relative;
+    height: 100%;
+    &__content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+    }
+    button{
+        margin-top: 30px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

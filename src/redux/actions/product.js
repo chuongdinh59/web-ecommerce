@@ -1,12 +1,4 @@
-import { SET_CATEGORY } from "constant"
-import { SET_PRODUCT } from "constant"
-import { LIST_VIEW } from "constant"
-import { SET_PRODUCT_DETAIL } from "constant"
-import { FETCH_DETAIL_PRODUCT } from "constant"
-import { GRID_VIEW } from "constant"
-import { FETCH_PRODUCT } from "constant"
-import { FETCH_CATEGORY } from "constant"
-import { LOADING_PRODUCT } from "constant"
+import { FETCH_CATEGORY, FETCH_DETAIL_PRODUCT, FETCH_PRODUCT, GRID_VIEW, LIST_VIEW, LOADING_PRODUCT, SET_CATEGORY, SET_PRODUCT, SET_PRODUCT_DETAIL } from "constant"
 
 
 export const loadingProductAction = (data) => {
@@ -66,3 +58,4 @@ export const setProductDetailAction =  (data) => {
         payload:data
     }
 }
+

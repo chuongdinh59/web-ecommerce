@@ -1,6 +1,9 @@
+import { Snackbar } from "@mui/material";
 import ButtonSe from "components/Button/ButtonSe";
 import CartHeader from "components/CartHeader";
 import { Search } from "components/Icon";
+import ModalProduct from "components/Modal/ModalProduct";
+import SnackBarCart from "components/SnackBar/Cart";
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,9 +18,11 @@ function Header(props) {
     menuRef.current.classList.toggle("on");
   };
 
-  const { user } = useSelector((store) => store.user);
+  const { user, login } = useSelector((store) => store.user);
   return (
     <>
+      <ModalProduct />
+      <SnackBarCart />
       <header className="header container">
         <div className="header-logo">
           <img src="./img/logo.png" alt="" />
@@ -36,23 +41,26 @@ function Header(props) {
             <img src="./img/logo.png" alt="avatar" />
             {user && (
               <div className="header-main__account__moreinfo">
-                <div className="item">
-                  <span>Name:</span>
-                  <span>{user?.name}</span>
-                </div>
-                <div className="item">
+                <img src={user?.avatar} alt="" className="avatar" />
+                <Link className="item" to={"/profile"}>
+                  <span className="text">{user?.name}</span>
+                </Link>
+                {/* <Link className="item" to={"/profile"}>
                   <span>Email:</span>
                   <span>{user?.email}</span>
-                </div>
+                </Link> */}
                 <ButtonSe onClick={() => dispatch(logoutAction())}>
                   LOGOUT
                 </ButtonSe>
               </div>
             )}
-            <div className="header-main__account__preview">
+            <Link
+              className="header-main__account__preview"
+              to={`${login ? "/" : "/login"}`}
+            >
               <span>Tài khoản</span>
               <span>{user?.name || "Tên tài khỏan"}</span>
-            </div>
+            </Link>
           </div>
           <Link className="header-main__cart" to={"/cart"}>
             <CartHeader />

@@ -1,12 +1,15 @@
 import HelperText from "components/HelperText";
 import { Lock, User } from "components/Icon";
 import { useForm } from "hooks/useForm";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import { fetchLoginAction } from "redux/actions/user";
 
 const LoginForm = ({ toggle }) => {
+  const { login } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { register, form, validate, error } = useForm();
   const onSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +18,10 @@ const LoginForm = ({ toggle }) => {
       dispatch(fetchLoginAction(form));
     }
   };
-
+  useEffect(() => {
+    if (login) navigate(-1);
+    return;
+  }, [login]);
   return (
     <>
       <form className="auth-form sign-in" onSubmit={onSubmit}>

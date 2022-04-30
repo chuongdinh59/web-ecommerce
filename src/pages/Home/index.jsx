@@ -1,3 +1,4 @@
+import { Snackbar } from "@mui/material";
 import CountDown from "components/Countdown";
 import Helmet from "components/Helmet";
 import Partner from "components/Partner";
@@ -5,9 +6,10 @@ import Policy from "components/Policy";
 import { ProductList } from "components/Product";
 import { ReviewCarousel } from "components/Review";
 import Slider from "components/Slider";
+import SnackBar from "components/SnackBar";
 import { API } from "constant";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react/cjs/react.development";
 import { loadingProductAction } from "redux/actions/product";
 import ColectionPreview from "./Colection";
@@ -35,7 +37,6 @@ function Home(props) {
   useEffect(() => {
     loadingHome();
   }, []);
-
   return (
     <Helmet title="Trang chủ">
       <Slider />
@@ -45,6 +46,7 @@ function Home(props) {
       <CountDown />
       <ReviewCarousel />
       <Partner />
+      <SnackBar />
     </Helmet>
   );
 }

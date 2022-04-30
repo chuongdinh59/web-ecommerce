@@ -1,5 +1,6 @@
 import { SET_PRODUCT } from "constant";
 import { LIST_VIEW } from "constant";
+import { SET_MODAL_PRODUCT } from "constant";
 import { SET_PRODUCT_DETAIL } from "constant";
 import { GRID_VIEW } from "constant";
 import { SET_CATEGORY } from "constant";
@@ -50,6 +51,7 @@ const productReducer = (state = initialValue, action) => {
                 loading: false,
                 productDetail: action.payload?.data
             }
+       
         default: 
             
             return {

@@ -1,95 +1,103 @@
-@import '../../assets/css/style.scss';
+@import "../../assets/css/style.scss";
 
-
-.checkout{
-    display: grid;
-    grid-template-columns: 9fr 3fr;
-    gap: 0 30px;
-    .cart{
+.checkout {
+  display: grid;
+  grid-template-columns: 9fr 3fr;
+  gap: 0 30px;
+  .cart {
+    font-size: 14px;
+    &-field {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 6fr 2fr 1fr 2fr 1fr;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      gap: 0 20px;
+      text-align: center;
+      // span{
+      //     text-align: left;
+      // }
+      .filter-field {
         font-size: 14px;
-        &-field {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 6fr 2fr 1fr 2fr 1fr;
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            gap: 0 20px;
-            text-align: center;
-            // span{
-            //     text-align: left;
-            // }
-            .filter-field{
-                font-size: 14px;
-            }
-        }
-        &-main{
-            padding: 20px;
-            margin: 40px 0;
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 40px 0;
-            border-radius: $radius-10;
-            .cart-item{
-                margin-bottom: 30px;
-            }
-        }
-        
+      }
     }
-    
-    &-info{
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        max-height: 60vh;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        &__heading, .price-item{
-            @include flex(center, space-between);
-            span{
-                font-size: 14px;    
-            }
-            padding: 20px 0;
-        }
-        .price-item{
-            padding: 10px 0;
-        }
-        .name, .phone{
-            font-size: 14px;
-        }
-        .sep{
-            height: 20px;
-            width: 3px; 
-            background-color: $blue;
-            margin: 0 10px;
-        }
-        &__address{
-            padding: 10px 0;
-        }
-        &__btn{
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            button{
-                width: 100%;
-                padding: 10px 0;
-                outline: none;
-                border: none;
-                color: #fff;
-                font-weight: 600;
-                background-color: $green1;
-                cursor: pointer;
-                border-radius: $radius-10;
-            }
-        }
-        .help{
-            width: 100%;
-            input{
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-        }
+    &-main {
+      padding: 20px;
+      margin: 40px 0;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px 0;
+      border-radius: $radius-10;
+      .cart-item {
+        margin-bottom: 30px;
+      }
     }
-    .cart-field__all{
-        text-align: left;
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-height: 60vh;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    &__heading,
+    .price-item {
+      @include flex(center, space-between);
+      span {
+        font-size: 14px;
+      }
+      padding: 20px 0;
     }
+    .price-item {
+      padding: 10px 0;
+    }
+    .name,
+    .phone {
+      font-size: 14px;
+    }
+    .sep {
+      height: 20px;
+      width: 3px;
+      background-color: $blue;
+      margin: 0 10px;
+    }
+    &__address {
+      padding: 10px 0;
+    }
+    &__btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      button {
+        width: 100%;
+        padding: 10px 0;
+        outline: none;
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        background-color: $green1;
+        cursor: pointer;
+        border-radius: $radius-10;
+      }
+    }
+    .help {
+      width: 100%;
+      input {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+  }
+  .cart-field__all {
+    text-align: left;
+  }
+  .checkout-info__heading button {
+    border: none;
+  }
+  .error-address {
+    color: #cca;
+    margin: 10px 0;
+    cursor: pointer;
+  }
 }

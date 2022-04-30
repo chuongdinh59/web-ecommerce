@@ -1,3 +1,6 @@
+import { FETCH_CART } from "constant"
+import { SET_STATUS_CART } from "constant"
+import { SET_CART } from "constant"
 import { DECREASE_CART } from "constant"
 import { CLEAR_CART, GET_CART, INCREASE_CART, REMOVE_CART } from "constant"
 
@@ -28,8 +31,28 @@ export const decreaseCartAction = (data) => {
         payload: data
     }
 }
-export const clearCartAction = () => {
+export const clearCartAction = (data) => {
     return {
         type: CLEAR_CART,
+        payload: data
+    }
+}
+export const fetchCartAction = () => {
+    return {
+        type: FETCH_CART,
+    }
+}
+
+export const setCartAction = (data) => {
+return {
+        type: SET_CART,
+        payload: data
+    }
+}
+
+export const setStatusCartAction = (data) => {
+    return {
+        type: SET_STATUS_CART,
+        payload:data
     }
 }
